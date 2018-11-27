@@ -1,2 +1,2 @@
 # web-quick-start
-Sample websites using Angular and Spring Boot.
+Simple websites using Angular and Spring Boot.
