@@ -1,0 +1,72 @@
+<div class="card col-md-6 mt-3 mx-auto">
+    <div *ngIf="studentForm" class="card-body">
+        <form (ngSubmit)="update()" [formGroup]="studentForm" novalidate>
+            <div class="form-group">
+                <label class="d-block">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    [placeholder]="'Name'"
+                  />
+  
+                  <div *ngIf="studentForm.controls.name.invalid && (studentForm.controls.name.dirty || studentForm.controls.name.touched)" class="text-danger">
+  
+                    <div *ngIf="studentForm.controls.name.errors.required">
+                      Name is required.
+                    </div>
+                    <div *ngIf="studentForm.controls.name.errors.minlength">
+                      Name must be at least 2 characters long.
+                    </div>
+  
+                  </div>
+                </label>
+  
+                <label class="d-block">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="class"
+                    [placeholder]="'Class'"
+                  />
+                  <small
+                    [hidden]="studentForm.controls.class.valid || studentForm.controls.class.untouched"
+                    class="text-danger"
+                  >
+                    Class is required
+                  </small>
+                </label>
+  
+                <label class="d-block">
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="age"
+                    [placeholder]="'Age'"
+                  />
+                  <small
+                    [hidden]="studentForm.controls.age.valid"
+                    class="text-danger"
+                  >
+                    Age must be at least 18.
+                  </small>
+                </label>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <button class="btn btn-primary w-100" type="submit">
+                        <span>Update</span>
+                    </button>
+                </div>
+                
+                <div class="col-lg-6">
+                  <button class="btn btn-danger w-100" (click)="cancle()">
+                      <span>Cancle</span>
+                  </button>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+  </div>

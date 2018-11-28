@@ -1,0 +1,28 @@
+<button type="button" class="btn btn-success" (click)="navigateToCreate()"><i class="fas fa-plus-circle"></i>   Create</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Class</th>
+      <th scope="col">Age</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <th scope="row">{{ student.id }}</th>
+      <td>{{ student.name }}</td>
+      <td>{{ student.clazz }}</td>
+      <td>{{ student.age }}</td>
+      <td>
+          <a class="btn btn-primary" [routerLink]="['/students/edit', student.id]" role="button"><i class="fas fa-edit"></i></a>
+      </td>
+      <td>
+          <a class="btn btn-danger" [routerLink]="" role="button" (click)="delete(student)"><i class="fas fa-trash-alt"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

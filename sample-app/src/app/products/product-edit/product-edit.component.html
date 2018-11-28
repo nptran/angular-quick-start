@@ -1,0 +1,58 @@
+<div class="card col-md-6 mt-3 mx-auto">
+    <div *ngIf="productForm" class="card-body">
+        <form (ngSubmit)="update()" [formGroup]="productForm" novalidate>
+            <div class="form-group">
+                <label class="d-block">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    [placeholder]="'Name'"
+                  />
+  
+                  <div *ngIf="productForm.controls.name.invalid && (productForm.controls.name.dirty || productForm.controls.name.touched)"
+                    class="text-danger">
+  
+                    <div *ngIf="productForm.controls.name.errors.required">
+                      Name is required.
+                    </div>
+                    <div *ngIf="productForm.controls.name.errors.minlength">
+                      Name must be at least 3 characters long.
+                    </div>
+  
+                  </div>
+  
+                  
+                </label>
+                <label class="d-block">
+                    <input
+                      type="number"
+                      class="form-control"
+                      formControlName="price"
+                      [placeholder]="'Price'"
+                    />
+                    <small
+                      [hidden]="productForm.controls.price.valid || productForm.controls.price.untouched"
+                      class="text-danger"
+                    >
+                      Price is required
+                    </small>
+                  </label>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <button class="btn btn-primary w-100" type="submit">
+                        <span>Update</span>
+                    </button>
+                </div>
+                
+                <div class="col-lg-6">
+                  <button class="btn btn-danger w-100" (click)="cancle()">
+                      <span>Cancle</span>
+                  </button>
+                </div>
+            </div>
+           
+        </form>
+    </div>
+  </div>

@@ -1,0 +1,26 @@
+<button type="button" class="btn btn-success" (click)="navigateToCreate()"><i class="fas fa-plus-circle"></i>   Create</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <th scope="col">{{ product.id }}</th>
+      <th scope="row">{{ product.name }}</th>
+      <td>{{ product.price }}</td>
+      <td>
+          <a class="btn btn-primary" [routerLink]="['/products/edit', product.id]" role="button"><i class="fas fa-edit"></i></a>
+      </td>
+      <td>
+          <a class="btn btn-danger" [routerLink]="" role="button" (click)="delete(product)"><i class="fas fa-trash-alt"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
