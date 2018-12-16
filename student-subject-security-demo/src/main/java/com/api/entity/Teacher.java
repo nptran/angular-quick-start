@@ -1,25 +1,22 @@
 package com.api.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "Teacher")
+@Table(name = "teacher")
 public class Teacher implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -30,19 +27,24 @@ public class Teacher implements Serializable {
 	
 	@NotNull
 	private String name;
-	
-	@JsonIgnoreProperties("teachers")
-	@ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
-	@JoinTable(name="subjects_teachers", joinColumns = {@JoinColumn(name ="teacher_id")},
-								  inverseJoinColumns = {@JoinColumn(name="subject_id")})
-	private List<Subject> subjects = new ArrayList<>();
 
-	public List<Subject> getSubjects() {
-		return subjects;
+	@JsonIgnoreProperties({"student","studentmark","teacher"})
+	@OneToMany(mappedBy="teacher", cascade=CascadeType.MERGE, orphanRemoval=true)
+	private Set<Mark> marks = new HashSet<>();
+
+	public Teacher() { }
+	
+	public Teacher(Integer id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+	
+	public Set<Mark> getMarks() {
+		return marks;
 	}
 
-	public void setSubjects(List<Subject> subjects) {
-		this.subjects = subjects;
+	public void setMarks(Set<Mark> marks) {
+		this.marks = marks;
 	}
 
 	public Integer getId() {

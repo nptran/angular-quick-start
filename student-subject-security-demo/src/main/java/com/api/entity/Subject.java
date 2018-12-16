@@ -1,18 +1,14 @@
 package com.api.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -34,15 +30,17 @@ public class Subject implements Serializable {
 	
 	private Short credit;
 	
-	@JsonIgnoreProperties({"studentId","subjectId"})
-	@OneToMany(mappedBy="subject", cascade=CascadeType.ALL, orphanRemoval=true)
-	private List<Mark> marks = new ArrayList<>();
-
-	@JsonIgnoreProperties("subjects")
-	@ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
-	@JoinTable(name="subjects_teachers", joinColumns = {@JoinColumn(name ="subject_id")},
-								  inverseJoinColumns = {@JoinColumn(name="teacher_id")})
-	private List<Teacher> teachers = new ArrayList<>();
+	@JsonIgnoreProperties({"student","studentmark","subject"})
+	@OneToMany(mappedBy="subject", cascade=CascadeType.MERGE, orphanRemoval=true)
+	private Set<Mark> marks = new HashSet<>();
+	
+	public Subject() { }
+	
+	public Subject(Integer id, String name, Short credit) {
+		this.id = id;
+		this.name = name;
+		this.credit = credit;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -68,12 +66,12 @@ public class Subject implements Serializable {
 		this.credit = credit;
 	}
 
-	public List<Teacher> getTeachers() {
-		return teachers;
+	public Set<Mark> getMarks() {
+		return marks;
 	}
 
-	public void setTeachers(List<Teacher> teachers) {
-		this.teachers = teachers;
+	public void setMarks(Set<Mark> marks) {
+		this.marks = marks;
 	}
 	
 }

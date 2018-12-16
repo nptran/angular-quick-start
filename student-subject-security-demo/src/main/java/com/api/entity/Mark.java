@@ -3,12 +3,12 @@
  */
 package com.api.entity;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -29,19 +29,20 @@ public class Mark {
 	
 	@ManyToOne(fetch=FetchType.EAGER)		//Must be EAGER when getting
 	@MapsId("studentId")
-	@JsonIgnoreProperties({"dob"})
+	@JsonIgnoreProperties({"dob","marks"})
 	private Student student;
 	
 	@ManyToOne(fetch=FetchType.EAGER)		//Must be EAGER when getting
 	@MapsId("subjectId")
-	@JsonIgnoreProperties("teachers")
+	@JsonIgnoreProperties("marks")
 	private Subject subject;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@MapsId("teacherId")
-	@JsonIgnoreProperties("subjects")
+	@JsonIgnoreProperties("marks")
 	private Teacher teacher;
 	
+	@Column(name="studentmark", nullable=true)
 	private Double studentmark ;
 	
 	public Mark() {	id = new MarkKey(); }
