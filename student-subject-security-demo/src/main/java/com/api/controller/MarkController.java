@@ -39,7 +39,7 @@ public class MarkController {
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
-	@GetMapping("avg/{studentId}")
+	@GetMapping("/avg/{studentId}")
 	public ResponseEntity<Double> getAvgMark(@PathVariable Integer studentId) {
 		
 		return new ResponseEntity<Double>(service.avgMark(studentId), HttpStatus.OK);

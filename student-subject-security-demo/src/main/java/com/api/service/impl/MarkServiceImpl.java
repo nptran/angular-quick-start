@@ -37,6 +37,9 @@ public class MarkServiceImpl implements MarkService {
 		int counter = 0;
 		double avg = 0;
 		for(Mark m : this.getAll(studentId)) {
+			if(m.getStudentmark()==null) {
+				return (double) -1;
+			}
 			avg += m.getStudentmark();
 			counter++;
 		}

@@ -1,8 +1,8 @@
 package com.api.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "student")
@@ -35,9 +34,18 @@ public class Student implements Serializable {
 	@JsonIgnore
 	private String password;
 
-	@JsonIgnoreProperties({"student","subject","teacher"})
-	@OneToMany(mappedBy="student", cascade=CascadeType.ALL, orphanRemoval=true)
-	private List<Mark> marks = new ArrayList<>();
+	@JsonIgnore
+	@OneToMany(mappedBy="student", cascade=CascadeType.MERGE, orphanRemoval=true)
+	private Set<Mark> marks = new HashSet<>();
+	
+	public Student() {	}
+
+	public Student(Integer id, String name, String dob, String password) {
+		this.id = id;
+		this.name = name;
+		this.dob = dob;
+		this.password = password;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -61,7 +69,9 @@ public class Student implements Serializable {
 
 	public void setDob(String dob) {
 		this.dob = dob;
-		this.setPassword(dob);
+		if (this.getPassword()==null) {
+			this.setPassword(dob);
+		}
 	}
 
 	public String getPassword() {
@@ -72,11 +82,11 @@ public class Student implements Serializable {
 		this.password = password;
 	}
 
-	public List<Mark> getMarks() {
+	public Set<Mark> getMarks() {
 		return marks;
 	}
 
-	public void setMarks(List<Mark> marks) {
+	public void setMarks(Set<Mark> marks) {
 		this.marks = marks;
 	}
 	

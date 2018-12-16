@@ -8,8 +8,8 @@ public interface MarkService {
 	
 	void save(Mark mark);
 	
-	List<Mark> getAll(Integer studentId);
+	List<Mark> getAll(Integer student);
 	
-	Double avgMark(Integer studentId);
+	Double avgMark(Integer student);
 	
 }
