@@ -4,32 +4,32 @@
     <div class="navbar-nav">
       <a
         class="nav-item nav-link"
-        [routerLink]="['/welcome']"
+        [routerLink]="['/']"
         [routerLinkActive]="['active']"
         >Home</a
       >
       <a
-        class="nav-item nav-link"
-        [routerLink]="['/products']"
-        [routerLinkActive]="['active']"
-        >Products</a
+      class="nav-item nav-link"
+      [routerLink]="['/subjects']"
+      [routerLinkActive]="['active']"
+      >Courses</a
       >
       <a
         class="nav-item nav-link"
-        [routerLink]="['/students']"
+        [routerLink]="['/persional']"
         [routerLinkActive]="['active']"
-        >Students</a
+        >Persional Profile</a
       >
+      
     </div>
   </div>
   <div class="navbar-expand ml-auto navbar-nav">
     <div class="navbar-nav">
       <a
         class="nav-item nav-link"
-        href="https://github.com/beeman"
-        target="_blank"
+        (click)="logout()"
       >
-        <i class="fa fa-github"></i>
+      <i class="fa fa-sign-out"></i>
       </a>
       <a
         class="nav-item nav-link"

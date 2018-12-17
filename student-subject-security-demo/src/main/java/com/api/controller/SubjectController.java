@@ -44,4 +44,9 @@ public class SubjectController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<Subject> getSubject(@PathVariable Integer id) {
+		
+		return new ResponseEntity<Subject>(service.getOne(id), HttpStatus.OK);
+	}
 }

@@ -1,27 +1,44 @@
+import { RegisterStudentComponent } from './register/register-student.component';
+import { LoginComponent } from './login/login.component';
+
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { AppComponent } from "./app.component";
 import { LayoutComponent } from "./ui/layout/layout.component";
+import { AuthGuardService } from "./guards/auth-guard.service";
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "welcome",
-    pathMatch: "full"
+    path: '',
+    redirectTo: 'welcome',
+    pathMatch: 'full'
   },
   {
-    path: "welcome",
-    loadChildren: "./welcome/welcome.module#WelcomeModule"
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path: "products",
-    loadChildren: "./products/products.module#ProductsModule"
+    path: 'register',
+    component: RegisterStudentComponent
   },
   {
-    path: "students",
-    loadChildren: "./students/students.module#StudentsModule"
+    path: '',
+    component: LayoutComponent,
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: 'welcome',
+        loadChildren: './welcome/welcome.module#WelcomeModule'
+      },
+      {
+        path: 'subjects',
+        loadChildren: './subjects/subjects.module#SubjectsModule'
+      },
+      {
+        path: 'persional',
+        loadChildren: './students/students.module#StudentsModule'
+      }
+    ]
   }
-
 ];
 
 @NgModule({

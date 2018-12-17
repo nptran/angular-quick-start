@@ -28,7 +28,7 @@ public class SubjectServiceImpl implements SubjectService {
 	}
 
 	public Subject getOne(Integer id) {
-		return repository.getOne(id);
+		return repository.findById(id).get();
 	}
 	
 }

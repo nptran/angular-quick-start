@@ -1,0 +1,43 @@
+<div class="card col-md-6 mt-3 mx-auto">
+  <div class="card-body">
+      <form (ngSubmit)="register()" [formGroup]="registerForm" novalidate>
+          <div class="form-group">
+              <label class="d-block">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="name"
+                  [placeholder]="'Student Name'"
+                />
+
+                <div *ngIf="registerForm.controls.name.invalid && (registerForm.controls.name.dirty || registerForm.controls.name.touched)" class="text-danger">
+
+                  <div *ngIf="registerForm.controls.name.errors.required">
+                    Student Name is required.
+                  </div>
+
+                </div>
+
+                
+              </label>
+              <label class="d-block">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="dob"
+                    [placeholder]="'Date Of Birth'"
+                  />
+                  <small
+                    [hidden]="registerForm.controls.password.valid || registerForm.controls.password.untouched"
+                    class="text-danger"
+                  >
+                    Date Of Birth is required
+                  </small>
+                </label>
+          </div>
+          <button class="btn btn-primary w-100" type="submit" [disabled]="registerForm.invalid">
+            <span>Register</span>
+          </button>
+      </form>
+  </div>
+</div>

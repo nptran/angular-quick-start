@@ -11,9 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "subject")
@@ -22,21 +22,22 @@ public class Subject implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Size(min = 2, max = 50, message="Tên môn học từ 2-50 ký tự")
+	@NotNull
 	private String name;
 	
-	private Short credit;
+	@NotNull
+	private Integer credit;
 	
-	@JsonIgnoreProperties({"student","studentmark","subject"})
+	@JsonIgnore
 	@OneToMany(mappedBy="subject", cascade=CascadeType.MERGE, orphanRemoval=true)
 	private Set<Mark> marks = new HashSet<>();
 	
-	public Subject() { }
+	public Subject() {	}
 	
-	public Subject(Integer id, String name, Short credit) {
+	public Subject(Integer id, String name, Integer credit) {
 		this.id = id;
 		this.name = name;
 		this.credit = credit;
@@ -58,11 +59,11 @@ public class Subject implements Serializable {
 		this.name = name;
 	}
 
-	public Short getCredit() {
+	public Integer getCredit() {
 		return credit;
 	}
 
-	public void setCredit(Short credit) {
+	public void setCredit(Integer credit) {
 		this.credit = credit;
 	}
 

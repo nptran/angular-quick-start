@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.entity.Mark;
 import com.api.service.MarkService;
 
-
 @CrossOrigin(origins="http://localhost:4200")
 @RequestMapping(path = "/v1/marks")
 @RestController
@@ -33,7 +32,7 @@ public class MarkController {
 	
 	@PostMapping
 	public ResponseEntity<Void> postMark(@RequestBody Mark mark) {
-		
+
 		service.save(mark);
 		
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
