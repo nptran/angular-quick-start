@@ -1,0 +1,26 @@
+<button type="button" class="btn btn-primary" (click)="navigateToRegister()">Courses Registration</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Student ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Date Of Birth</th>
+      <th scope="col" [hidden]="hidden">GPA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ student?.id }}</th>
+      <td>{{ student?.name }}</td>
+      <td>{{ student?.dob }}</td>
+      <th scope="row" *ngIf="avg" [hidden]="hidden">
+        {{ avg }}
+      </th>
+      <td>
+          <button class="btn btn-primary" (click)="showGPA()">{{ labelShowHide }} GPA</button>
+          <a class="btn btn-primary" [routerLink]="['/welcome']" role="button">Edit</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

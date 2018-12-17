@@ -1,0 +1,40 @@
+<div class="card col-md-6 mt-3 mx-auto">
+    <div class="card-body">
+        <form (ngSubmit)="register()" [formGroup]="subjectForm" novalidate>
+            <div class="form-group">
+                <div>
+                
+                    <select class="form-control"
+                            formControlName="subject"
+                            >
+                       <option *ngFor="let subject of subjects" [ngValue]="subject">{{ subject.name }}</option>
+                    </select>
+                    
+                </div>
+
+                <div>
+                   
+                    <select class="form-control"
+                            formControlName="teacher"
+                            >
+                       <option *ngFor="let teacher of teachers" [ngValue]="teacher">{{ teacher.name }}</option>
+                    </select>
+                    
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <button class="btn btn-success w-100" type="submit">
+                        <span>Submit</span>
+                    </button>
+                </div>
+                <div class="col-lg-6">
+                    <button class="btn btn-primary w-100" (click)="cancel()">
+                        <span>Cancel</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>

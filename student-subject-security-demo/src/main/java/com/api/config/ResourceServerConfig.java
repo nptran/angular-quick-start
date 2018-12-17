@@ -2,6 +2,7 @@ package com.api.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -25,13 +26,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests()
-//				.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
-//                "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui",
-//                "/swagger-resources/configuration/security").permitAll() //permit swagger through oAuth2
-//				.antMatchers(HttpMethod.POST, "/v1/students").permitAll()
-//				.antMatchers(HttpMethod.GET, "/v1/teachers").permitAll()
-//				.antMatchers(HttpMethod.GET, "/v1/subjects").permitAll()
-				.antMatchers("/**").permitAll();
+				.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
+                "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui",
+                "/swagger-resources/configuration/security").permitAll() //permit swagger through oAuth2
+				.antMatchers(HttpMethod.GET, "/v1/students/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/v1/teachers/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/v1/subjects/**").permitAll()
+				.antMatchers(HttpMethod.POST, "/v1/marks/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/v1/marks/**").fullyAuthenticated()
+				.antMatchers("/v1/**").authenticated();
 	}
 
 }

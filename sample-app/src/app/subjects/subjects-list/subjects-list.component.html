@@ -1,0 +1,46 @@
+<button type="button" class="btn btn-primary" (click)="navigateToViewCourses(template)">My Courses</button>
+<button type="button" class="btn btn-primary" (click)="navigateToRegisterCourses()">Register Courses</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Credit</th>
+      <th scope="col">Registration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let subj of subjects">
+      <th scope="row">{{ subj.name }}</th>
+      <td>{{ subj.credit }}</td>
+      <td>
+        <div *ngFor="let mark of theseSubjects">
+          <i class="fa fa-check" *ngIf="mark.subject.name == subj.name"></i>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #template>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Credit</th>
+        <th scope="col">Teacher</th>
+        <th scope="col">Mark</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="theseSubjects">
+      <tr *ngFor="let mark of theseSubjects">
+        <th scope="row">{{ mark?.subject.name }}</th>
+
+        <td>{{ mark?.subject.credit }}</td>
+        <td>{{ mark?.teacher.name }}</td>
+        <td>{{ mark?.studentmark }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
