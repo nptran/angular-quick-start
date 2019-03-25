@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 It must be included typecsript-angular-client of Student-subject-security-demo to run.
-You can auto-generate typescript with [Swagger 2](http://editor.swagger.io/)
+You can auto-generate typescript by [Swagger 2](http://editor.swagger.io/)
 
 ### Development server
 
