@@ -30,6 +30,9 @@ public class ProductController {
 	@GetMapping
 	public ResponseEntity<List<Product>> getAllProducts() {
 
+		if(service.getAll().isEmpty()) {
+			return new ResponseEntity<List<Product>>(service.getAll(),HttpStatus.NOT_FOUND);
+		}
 		return new ResponseEntity<List<Product>>(service.getAll(), HttpStatus.OK);
 
 	}
