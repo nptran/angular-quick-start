@@ -1,6 +1,5 @@
 package com.techmaster.sample.controller;
 
-/*This is develop branch*/
 
 import java.util.List;
 
