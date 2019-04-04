@@ -1,7 +1,5 @@
 package com.techmaster.sample.controller;
 
-/*This is the develop branch*/
-
 import java.util.List;
 
 import javax.validation.Valid;
