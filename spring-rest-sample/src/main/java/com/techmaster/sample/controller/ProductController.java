@@ -1,6 +1,6 @@
 package com.techmaster.sample.controller;
 
-/*This is master branch*/
+/*This is feature branch*/
 
 import java.util.List;
 
