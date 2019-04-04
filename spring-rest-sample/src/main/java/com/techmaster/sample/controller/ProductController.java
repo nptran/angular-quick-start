@@ -1,8 +1,5 @@
 package com.techmaster.sample.controller;
 
-/*This is release v0.0.1*/
-
-/*something to test publish*/
 
 import java.util.List;
 
