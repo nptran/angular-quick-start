@@ -1,5 +1,15 @@
 package com.techmaster.sample.controller;
 
+/*We consider origin/develop to be the main branch
+ * where the source code of HEAD always reflects a
+ * state with the latest delivered development changes
+ * for the next release. Some would call this the “integration
+ * branch”. This is where any automatic nightly builds are built
+ * from.
+ */
+
+
+
 import java.util.List;
 
 import javax.validation.Valid;
