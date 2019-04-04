@@ -1,7 +1,6 @@
 package com.techmaster.sample.controller;
 
 /*This is master branch*/
-//test push only branch
 
 import java.util.List;
 
